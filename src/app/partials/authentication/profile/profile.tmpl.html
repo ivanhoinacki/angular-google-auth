@@ -1,0 +1,146 @@
+<div class="jumbotron">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="logout"><a href="?">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Profile</div>
+        <div class="panel-body">
+            <legend><i class="ion-clipboard"></i>Minhas Informações</legend>
+            <div class="row">
+                <div class="container-fluid pull-right">
+                    {{vm.counter | formatTimer}}
+                </div>
+            </div>
+            <form name="forminfo">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <label class="control-label">Imagem</label>
+                        <img class="profile-picture" ng-src="{{vm.form.image.url || 'http://placehold.it/100x100'}}" >
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><i class="ion-person"></i> Nome</label>
+                        <input readonly type="text" class="form-control" ng-model="vm.form.displayName" />
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label"><i class="ion-at"></i> Emails</label>
+                        <input readonly type="text" ng-repeat="email in vm.form.emails" class="form-control" ng-model="email.value" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Problema da Combinação</div>
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form name="valorstring">
+                            <div class="form-group">
+                                <label class="control-label"><i class="ion-person"></i> Entrada String</label>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <input required type="text" name="txt-valorstring" class="form-control" ng-model="vm.form.numberString" />
+                                </div>
+                                <div class="form-group" >
+                                    <button class="btn btn-sm btn-primary" type="submit" ng-disabled="valorstring.$invalid" ng-click="vm.processaString(vm.form.numberString)" >
+                                        Processar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form name="valoreinteger">
+                            <div class="form-group">
+                                <label class="control-label"><i class="ion-person"></i> Entrada Integer</label>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <input required type="text" name="txt-valorint" min="1" max="5" class="form-control" ng-model="vm.form.numerInteger" />
+                                </div>
+                                <div class="form-group" >
+                                    <button class="btn btn-sm btn-primary" type="submit"  ng-disabled="valoreinteger.$invalid"  ng-click="vm.processaInteger(vm.form.numerInteger);" >
+                                        Processar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form name="combine">
+                            <div class="form-group">
+                                <label class="control-label"><i class="ion-person"></i> Combinar</label>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group" >
+                                    <button class="btn btn-sm btn-primary" type="submit"  ng-disabled="valoreinteger.$invalid || valorstring.$invalid"  ng-click="vm.execCombinacao();" >
+                                        Executar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Valores String</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {{::vm.listString}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Valores Integer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {{::vm.listInteger}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Analise Combinatória</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(key, item)  in vm.listCombinacao">
+                                    <td>
+                                        {{item}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import "https://fonts.googleapis.com/css?family=Aldrich";
+@import url(../bower_components/bootstrap/dist/css/bootstrap.css);
+button, select, html, textarea, input {
+  font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif; }
+
+/**
+ *  Não remova esta comentários abaixo. É os marcadores usados por gole-injeção para injetar
+ *  Todos os seus arquivos Sass automaticamente
+ */
+.jumbotron {
+  background-color: #FFF !important; }
+
+.profile-picture {
+  height: 75px; }
